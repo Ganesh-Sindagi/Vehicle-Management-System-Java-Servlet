@@ -1,0 +1,55 @@
+// Execute SQL query
+			         Statement st = con.createStatement();
+			         String sql;
+			         sql = "SELECT * FROM users";
+			         ResultSet rs = st.executeQuery(sql);
+
+			         // Extract data from result set
+			         while(rs.next()){
+			            //Retrieve by column name
+			            int user_id  = rs.getInt("user_id");
+			            String email = rs.getString("email");
+			            String password = rs.getString("password");
+
+			            //Display values
+			            out.println("user_id: " + user_id);
+			            out.println("Email: " + email);
+			            out.println("Password: " + password);
+			         }
+
+
+
+try {
+			Connection con = db.makeConnection();
+			if(con != null) {
+				System.out.print("Connection Successfull");
+				
+				// Execute SQL query
+		         Statement st = con.createStatement();
+		         String sql;
+		         sql = "SELECT * FROM users WHERE email='" + email + "'";
+		         ResultSet rs = st.executeQuery(sql);
+
+		         // Extract data from result set
+		         if(!rs.isBeforeFirst()) {
+		        	 out.println("Email ID Not found: \t" + email);
+		         } else {
+		        	 while(rs.next()){
+		        		int user_id = rs.getInt("user_id");
+		        		String name = rs.getString("name");
+		        		String remail = rs.getString("email");
+				        String rpassword = rs.getString("password");
+				        System.out.println("Password: " + rpassword);
+				        
+				        // Check for password 
+				        if(password.equals(rpassword)) {
+				        	session.setAttribute("user_id", user_id);
+				        	session.setAttribute("name", name);
+				        	session.setAttribute("email", remail);
+				        	response.sendRedirect("dashboard.jsp");
+				        }
+				        
+		        	 }
+		         }
+			}
+		} catch(Exception e){};
