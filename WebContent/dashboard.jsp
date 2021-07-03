@@ -16,7 +16,12 @@
     	String name = (String)session.getAttribute("name");
     %>
 
-    <h1>Welcome <%= name %></h1><br><br>
-    <a href="/Vehicle/logout"><Button>Logout</Button></a>
+    <h1>Welcome <%= name %></h1>
+    <a href="/Vehicle/logout"><Button>Logout</Button></a><br /><br />
+    
+    <a href="/Vehicle/car"><Button>Buy a Car</Button></a>
+    <a href="/Vehicle/bike"><Button>Buy a Bike</Button></a>
+    <a href="/Vehicle/sell"><Button>Sell your vehicle</Button></a>
+    
 </body>
 </html>
