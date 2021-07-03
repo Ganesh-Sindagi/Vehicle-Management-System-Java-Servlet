@@ -36,7 +36,7 @@ public class SellServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE owner_id=" + session.getAttribute("user_id");
+		         sql = "SELECT * FROM vehicle WHERE owner_id=" + session.getAttribute("user_id") + " AND avail='true'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set

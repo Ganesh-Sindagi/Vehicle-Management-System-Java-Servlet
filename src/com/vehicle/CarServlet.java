@@ -34,7 +34,7 @@ public class CarServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE type=" + 4;
+		         sql = "SELECT * FROM vehicle WHERE type=" + 4 + " AND avail = 'true'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set

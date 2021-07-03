@@ -49,7 +49,7 @@
 				</tr>
 			</thead>
 		
-			</tbody>
+			<tbody>
 				<% for(int i=0; i<vehicleList.size(); i++){ %>
 					<% Vehicle vehicle = (Vehicle)vehicleList.get(i);%>
 						<tr>

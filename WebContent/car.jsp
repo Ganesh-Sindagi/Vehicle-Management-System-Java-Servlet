@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cars</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 	<%
@@ -26,26 +27,59 @@
     
     <h2>Available cars <%=carList.size()%></h2>
     
-    <%
-        	for(int i=0; i<carList.size(); i++){
-        	    	Vehicle car = (Vehicle)carList.get(i);
-        	    	out.println(car.getV_id());
-        	    	out.println(car.getType());
-        	    	out.println(car.getModel());
-        	    	out.println(car.getColor());
-        	    	out.println(car.getReg_date());
-        	    	out.println(car.getImage());
-        	    	out.println(car.getPrice());
-        	    	out.println(car.getArea());
-        	    	out.println(car.getCity());
-        	    	out.println(car.getState());
-        	    	out.println(car.getZip());
-        	    	out.println(car.getOwner_id());
-        	    	out.println(car.getFuel_type());
-        	    	out.println(car.getGear());
-        	    	out.println(car.isAvail());
-        	    }
-        %>
+    <% if(!carList.isEmpty()) { %>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Vehicle_id</th>
+					<th scope="col">Type</th>
+					<th scope="col">Model</th>
+					<th scope="col">Color</th>
+					<th scope="col">Reg. Date</th>
+					<th scope="col">Image</th>
+					<th scope="col">Price</th>
+					<th scope="col">Area</th>
+					<th scope="col">City</th>
+					<th scope="col">State</th>
+					<th scope="col">Zip</th>
+					<th scope="col">Owner_id</th>
+					<th scope="col">Fuel_type</th>
+					<th scope="col">Gear</th>
+					<th scope="col">Available</th>
+					<th scope="col">Book</th>
+				</tr>
+			</thead>
+		
+			<tbody>
+       			<% for(int i=0; i<carList.size(); i++){ %>
+       	    		<% Vehicle car = (Vehicle)carList.get(i); %>
+       	    		<tr>
+						<td><% out.println(car.getV_id()); %></td>
+						<td><% out.println(car.getType()); %></td>
+						<td><% out.println(car.getModel()); %></td>
+						<td><% out.println(car.getColor()); %></td>
+						<td><% out.println(car.getReg_date()); %></td>
+						<td><img src="<% out.println(car.getImage()); %>"></td>
+						<td><% out.println(car.getPrice()); %></td>
+						<td><% out.println(car.getArea()); %></td>
+						<td><% out.println(car.getCity()); %></td>
+						<td><% out.println(car.getState()); %></td>
+						<td><% out.println(car.getZip()); %></td>
+						<td><% out.println(car.getOwner_id()); %></td>
+						<td><% out.println(car.getFuel_type()); %></td>
+						<td><% out.println(car.getGear()); %></td>
+						<td><% out.println(car.isAvail()); %></td>
+						<td>
+							<form action="/Vehicle/book" method="POST">
+								<input type="hidden" name="owner_id" value="<%= car.getOwner_id() %>">
+								<button type="submit" class="btn btn-dark" name="v_id" value="<%= car.getV_id() %>">Book</button>
+							</form>
+						</td>
+					</tr>
+       	    	<% } %>
+       	    	</tbody>
+       	    </table>
+       <% } %>
  
 </body>
 </html>

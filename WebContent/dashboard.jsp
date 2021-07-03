@@ -22,6 +22,7 @@
     <a href="/Vehicle/car"><Button>Buy a Car</Button></a>
     <a href="/Vehicle/bike"><Button>Buy a Bike</Button></a>
     <a href="/Vehicle/sell"><Button>Sell your vehicle</Button></a>
+    <a href="/Vehicle/orders"><Button>My Orders</Button></a>
     
 </body>
 </html>
