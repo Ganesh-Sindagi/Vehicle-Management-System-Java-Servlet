@@ -91,10 +91,6 @@ public class SellServlet extends HttpServlet {
 		         }
 			}
 		} catch(Exception e){};
-		
-		
-		
-//		response.sendRedirect("sell.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
