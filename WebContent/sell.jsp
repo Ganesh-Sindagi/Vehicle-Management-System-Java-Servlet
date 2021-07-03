@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@page import="java.util.ArrayList" %>
+ <%@page import="com.vehicle.Vehicle" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +20,32 @@
     %>
 
     <h1>Welcome <%= name %></h1>
+    
+    <% ArrayList<Vehicle> vehicleList = (ArrayList)request.getAttribute("vehicleList");
+    		
+    		if(!vehicleList.equals(null)) {
+            	for(int i=0; i<vehicleList.size(); i++){
+            	    	Vehicle vehicle = (Vehicle)vehicleList.get(i);
+            	    	out.println(vehicle.getV_id());
+            	    	out.println(vehicle.getType());
+            	    	out.println(vehicle.getModel());
+            	    	out.println(vehicle.getColor());
+            	    	out.println(vehicle.getReg_date());
+            	    	out.println(vehicle.getImage());
+            	    	out.println(vehicle.getPrice());
+            	    	out.println(vehicle.getArea());
+            	    	out.println(vehicle.getCity());
+            	    	out.println(vehicle.getState());
+            	    	out.println(vehicle.getZip());
+            	    	out.println(vehicle.getOwner_id());
+            	    	out.println(vehicle.getFuel_type());
+            	    	out.println(vehicle.getGear());
+            	    	out.println(vehicle.isAvail());
+            	    }
+    		}
+            
+    %>
+    
     <h2>You can Register your vehicle for sale!</h2>
 	<h3>Please fill the details below to register your vehicle</h3>
 

@@ -22,9 +22,7 @@
     <h1>Welcome <%=name%></h1>
     <h1>This is the car section</h1>
     
-    <%
-        	ArrayList<Vehicle> carList = (ArrayList)request.getAttribute("carList");
-        %>
+    <% ArrayList<Vehicle> carList = (ArrayList)request.getAttribute("carList"); %>
     
     <h2>Available cars <%=carList.size()%></h2>
     
