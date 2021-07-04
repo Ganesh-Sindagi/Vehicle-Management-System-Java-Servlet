@@ -3,6 +3,7 @@ package com.vehicle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -93,7 +94,6 @@ public class OrdersServlet extends HttpServlet {
 					        String gear = rsV.getString("gear");
 					        boolean avail = Boolean.parseBoolean(rsV.getString("avail"));
 					        
-					        
 					        vehicle.setV_id(v_id);
 					        vehicle.setOwner_id(owner_id_V);
 					        vehicle.setType(type);
@@ -128,6 +128,31 @@ public class OrdersServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int v_id =  Integer.parseInt(request.getParameter("vehicle_id"));
+		int booking_id =  Integer.parseInt(request.getParameter("booking_id"));
+		
+		try {
+			DbConnection db = new DbConnection();
+			Connection con = db.makeConnection();
+			if(con != null) {
+				System.out.print("Connection Successfull");
+				
+				// Execute SQL query for Deleting Booking
+				String sqlBooking = "DELETE FROM booking WHERE booking_id=" + booking_id;
+				PreparedStatement stBooking = con.prepareStatement(sqlBooking);
+				stBooking.executeUpdate();
+					
+				// Execute SQL query for updating vehicle availability
+				String sql;
+				sql = "UPDATE vehicle SET avail='true' WHERE v_id=" + v_id;
+				PreparedStatement st = con.prepareStatement(sql);
+				st.executeUpdate();
+				
+				System.out.println("All UPDATE AND DELETE Queries executed!!");
+				response.sendRedirect("/Vehicle/orders");
+			}
+		} catch(Exception e){};
 		
 	}
 

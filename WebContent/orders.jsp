@@ -77,8 +77,8 @@
 						<td><% out.println(vehicle.getGear()); %></td>
 						<td>
 							<form action="/Vehicle/orders" method="POST">
-								<input type="hidden" name="owner_id" value="<%= booking.getOwner_id() %>">
-								<button type="submit" class="btn btn-dark" name="v_id" value="<%= booking.getVehicle_id() %>">Cancel</button>
+								<input type="hidden" name="vehicle_id" value="<%= booking.getVehicle_id() %>">
+								<button type="submit" class="btn btn-dark" name="booking_id" value="<%= booking.getBooking_id() %>">Cancel</button>
 							</form>
 						</td>
 					</tr>
