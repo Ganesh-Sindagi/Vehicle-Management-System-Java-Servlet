@@ -39,6 +39,9 @@ public class FilterPriceBikeServlet extends HttpServlet {
 		State s = new State();
 		ArrayList<State> stateList = s.fetchStateBike();
 		
+		Zip z = new Zip();
+		ArrayList<Zip> zipList = z.fetchZipBike();
+		
 		ArrayList<Vehicle> bikeList = new ArrayList<Vehicle>();
 		
 		try {
@@ -102,6 +105,7 @@ public class FilterPriceBikeServlet extends HttpServlet {
 		request.setAttribute("areaList", areaList);
 		request.setAttribute("cityList", cityList);
 		request.setAttribute("stateList", stateList);
+		request.setAttribute("zipList", zipList);
 		request.setAttribute("bikeList", bikeList);
 		RequestDispatcher rd = request.getRequestDispatcher("bike.jsp");
 		rd.forward(request, response);

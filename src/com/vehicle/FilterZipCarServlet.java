@@ -14,35 +14,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/filterstatebike")
-public class FilterStateBikeServlet extends HttpServlet {
+@WebServlet("/filterzipcar")
+public class FilterZipCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/Vehicle/bike");
+		response.sendRedirect("/Vehicle/car");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
-		String selectedState = (String)(request.getParameter("state"));
-		System.out.println("State:\t" + selectedState);
+		String selectedZip = (String)(request.getParameter("zip"));
+		System.out.println("Zip:\t" + selectedZip);
 		
 		// Array List for filters
 		Area a = new Area();
-		ArrayList<Area> areaList = a.fetchAreaBike();
+		ArrayList<Area> areaList = a.fetchAreaCar();
 		
 		City c = new City();
-		ArrayList<City> cityList = c.fetchCityBike();
+		ArrayList<City> cityList = c.fetchCityCar();
 		
 		State s = new State();
-		ArrayList<State> stateList = s.fetchStateBike();
+		ArrayList<State> stateList = s.fetchStateCar();
 		
 		Zip z = new Zip();
-		ArrayList<Zip> zipList = z.fetchZipBike();
+		ArrayList<Zip> zipList = z.fetchZipCar();
 		
-		ArrayList<Vehicle> bikeList = new ArrayList<Vehicle>();
+		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
 		
 		try {
 			Connection con = db.makeConnection();
@@ -52,15 +52,15 @@ public class FilterStateBikeServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE type=" + 2 + " AND avail = 'true' AND state='" + selectedState +"'";
+		         sql = "SELECT * FROM vehicle WHERE type=" + 4 + " AND avail = 'true' AND zip='" + selectedZip +"'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set
 		         if(!rs.isBeforeFirst()) {
-		        	 out.println("No bikes FOund");
+		        	 out.println("No Cars FOund");
 		         } else {
 		        	 while(rs.next()){
-		        		Vehicle bike = new Vehicle();
+		        		Vehicle car = new Vehicle();
 		        		 
 		        		int v_id = rs.getInt("v_id");
 		        		int owner_id = rs.getInt("owner_id");
@@ -79,24 +79,24 @@ public class FilterStateBikeServlet extends HttpServlet {
 				        boolean avail = Boolean.parseBoolean(rs.getString("avail"));
 				        
 				        
-				        bike.setV_id(v_id);
-		        		bike.setOwner_id(owner_id);
-		        		bike.setType(type);
-		        		bike.setModel(model);
-		        		bike.setColor(color);
-		        		bike.setReg_date(reg_date);
-		        		bike.setImage(image);
-		        		bike.setPrice(price);
-		        		bike.setArea(area);
-		        		bike.setCity(city);
-		        		bike.setState(state);
-		        		bike.setZip(zip);
-		        		bike.setFuel_type(fuel_type);
-		        		bike.setGear(gear);
-		        		bike.setAvail(avail);
+				        car.setV_id(v_id);
+		        		car.setOwner_id(owner_id);
+		        		car.setType(type);
+		        		car.setModel(model);
+		        		car.setColor(color);
+		        		car.setReg_date(reg_date);
+		        		car.setImage(image);
+		        		car.setPrice(price);
+		        		car.setArea(area);
+		        		car.setCity(city);
+		        		car.setState(state);
+		        		car.setZip(zip);
+		        		car.setFuel_type(fuel_type);
+		        		car.setGear(gear);
+		        		car.setAvail(avail);
 				        
-				        // Add bike objects to bikeList
-				        bikeList.add(bike);
+				        // Add car objects to carList
+				        carList.add(car);
 		        	 }
 		         }
 			}
@@ -106,8 +106,8 @@ public class FilterStateBikeServlet extends HttpServlet {
 		request.setAttribute("cityList", cityList);
 		request.setAttribute("stateList", stateList);
 		request.setAttribute("zipList", zipList);
-		request.setAttribute("bikeList", bikeList);
-		RequestDispatcher rd = request.getRequestDispatcher("bike.jsp");
+		request.setAttribute("carList", carList);
+		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
 		rd.forward(request, response);
 	}
 

@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/filterstatebike")
-public class FilterStateBikeServlet extends HttpServlet {
+@WebServlet("/filterzipbike")
+public class FilterZipBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("/Vehicle/bike");
 	}
@@ -26,8 +26,8 @@ public class FilterStateBikeServlet extends HttpServlet {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
-		String selectedState = (String)(request.getParameter("state"));
-		System.out.println("State:\t" + selectedState);
+		String selectedZip = (String)(request.getParameter("zip"));
+		System.out.println("State:\t" + selectedZip);
 		
 		// Array List for filters
 		Area a = new Area();
@@ -52,7 +52,7 @@ public class FilterStateBikeServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE type=" + 2 + " AND avail = 'true' AND state='" + selectedState +"'";
+		         sql = "SELECT * FROM vehicle WHERE type=" + 2 + " AND avail = 'true' AND zip='" + selectedZip +"'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set

@@ -34,6 +34,9 @@ public class CarServlet extends HttpServlet {
 		
 		State s = new State();
 		ArrayList<State> stateList = s.fetchStateCar();
+		
+		Zip z = new Zip();
+		ArrayList<Zip> zipList = z.fetchZipCar();
 
 		// Array List for cars
 		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
@@ -99,6 +102,7 @@ public class CarServlet extends HttpServlet {
 		request.setAttribute("areaList", areaList);
 		request.setAttribute("cityList", cityList);
 		request.setAttribute("stateList", stateList);
+		request.setAttribute("zipList", zipList);
 		request.setAttribute("carList", carList);
 		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
 		rd.forward(request, response);

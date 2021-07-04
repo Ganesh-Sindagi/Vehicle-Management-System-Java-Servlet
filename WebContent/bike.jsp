@@ -5,6 +5,7 @@
 <%@page import="com.vehicle.Area" %>
 <%@page import="com.vehicle.City" %>
 <%@page import="com.vehicle.State" %>
+<%@page import="com.vehicle.Zip" %>  
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -76,6 +77,22 @@
 					<input name="state" class="form-check-input" type="checkbox" value="<%= state.getState() %>" id="flexCheckDefault" onChange="this.form.submit()">
 					<label class="form-check-label" for="flexCheckDefault">
 					    <% out.println(state.getState()); %>
+					</label>
+				</div>
+    		<% } %>
+    	<% } %>
+    </form>
+    
+    <form action="/Vehicle/filterzipbike" method="POST">
+    	<p>Filter By Zip</p>
+    	<% ArrayList<Zip> zipList = (ArrayList)request.getAttribute("zipList"); %>
+    	<% if(!zipList.isEmpty()){ %>
+    		<% for(int i=0; i<zipList.size(); i++){ %>
+    			<% Zip zip = (Zip)zipList.get(i); %>
+    			<div class="form-check">
+					<input name="zip" class="form-check-input" type="checkbox" value="<%= zip.getZip() %>" id="flexCheckDefault" onChange="this.form.submit()">
+					<label class="form-check-label" for="flexCheckDefault">
+					    <% out.println(zip.getZip()); %>
 					</label>
 				</div>
     		<% } %>
