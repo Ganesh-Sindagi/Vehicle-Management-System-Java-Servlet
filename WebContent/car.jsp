@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
  <%@page import="java.util.ArrayList" %>
  <%@page import="com.vehicle.Vehicle" %>
+ <%@page import="com.vehicle.Area" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,6 +30,22 @@
 	    <label for="customRange2" class="form-label">Select Price Range</label>
 		<input name="price_range" type="range" class="form-range" min="100000" max="10000000" step="5000" value="5000000" id="customRange2" onChange="this.form.submit()">
 		<p>Rs 1 Crore</p>
+    </form>
+    
+    <form action="/Vehicle/filterareacar" method="POST">
+    	<p>Filter By Area</p>
+    	<% ArrayList<Area> areaList = (ArrayList)request.getAttribute("areaList"); %>
+    	<% if(!areaList.isEmpty()){ %>
+    		<% for(int i=0; i<areaList.size(); i++){ %>
+    			<% Area area = (Area)areaList.get(i); %>
+    			<div class="form-check">
+					<input name="area" class="form-check-input" type="checkbox" value="<%= area.getArea() %>" id="flexCheckDefault" onChange="this.form.submit()">
+					<label class="form-check-label" for="flexCheckDefault">
+					    <% out.println(area.getArea()); %>
+					</label>
+				</div>
+    		<% } %>
+    	<% } %>
     </form>
     
     

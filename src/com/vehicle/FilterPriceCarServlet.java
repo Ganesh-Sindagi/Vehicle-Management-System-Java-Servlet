@@ -29,6 +29,11 @@ public class FilterPriceCarServlet extends HttpServlet {
 		int price_range = Integer.parseInt(request.getParameter("price_range"));
 		System.out.println("Price Range:\t" + price_range);
 		
+		// Array List for filters
+		Area a = new Area();
+		ArrayList<Area> areaList = a.fetchAreaCar();
+		
+		
 		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
 		
 		try {
@@ -89,6 +94,7 @@ public class FilterPriceCarServlet extends HttpServlet {
 			}
 		} catch(Exception e){};
 		
+		request.setAttribute("areaList", areaList);
 		request.setAttribute("carList", carList);
 		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
 		rd.forward(request, response);

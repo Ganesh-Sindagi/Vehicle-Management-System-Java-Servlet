@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vehicle.Vehicle;;
+import com.vehicle.Vehicle;
+
+import com.vehicle.Area;
 
 @WebServlet("/car")
 public class CarServlet extends HttpServlet {
@@ -24,6 +26,11 @@ public class CarServlet extends HttpServlet {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
+		// Array List for filters
+		Area a = new Area();
+		ArrayList<Area> areaList = a.fetchAreaCar();
+
+		// Array List for cars
 		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
 		
 		try {
@@ -77,23 +84,6 @@ public class CarServlet extends HttpServlet {
 		        		car.setGear(gear);
 		        		car.setAvail(avail);
 				        
-				        // Print the values
-//				        out.println("v_id\t" + v_id);
-//				        out.println("owner_id\t" + owner_id);
-//				        out.println("type\t" + type);
-//				        out.println("model\t" + model);
-//				        out.println("color\t" + color);
-//				        out.println("reg_date\t" + reg_date);
-//				        out.println("image\t" + image);
-//				        out.println("price\t" + price);
-//				        out.println("area\t" + area);
-//				        out.println("city\t" + city);
-//				        out.println("state\t" + state);
-//				        out.println("zip\t" + zip);
-//				        out.println("fuel_type\t" + fuel_type);
-//				        out.println("gear\t" + gear);
-//				        out.println("avail\t" + avail);
-				        
 				        // Add car objects to carList
 				        carList.add(car);
 		        	 }
@@ -101,6 +91,7 @@ public class CarServlet extends HttpServlet {
 			}
 		} catch(Exception e){};
 		
+		request.setAttribute("areaList", areaList);
 		request.setAttribute("carList", carList);
 		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
 		rd.forward(request, response);

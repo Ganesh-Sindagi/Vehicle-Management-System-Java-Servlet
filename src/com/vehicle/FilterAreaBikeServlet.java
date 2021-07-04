@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/filterpricebike")
-public class FilterPriceBikeServlet extends HttpServlet {
+@WebServlet("/filterareabike")
+public class FilterAreaBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,12 +26,13 @@ public class FilterPriceBikeServlet extends HttpServlet {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
-		int price_range = Integer.parseInt(request.getParameter("price_range"));
-		System.out.println("Price Range:\t" + price_range);
+		String selectedArea = (String)(request.getParameter("area"));
+		System.out.println("Price Range:\t" + selectedArea);
 		
 		// Array List for filters
 		Area a = new Area();
-		ArrayList<Area> areaList = a.fetchAreaBike();		
+		ArrayList<Area> areaList = a.fetchAreaBike();
+		
 		
 		ArrayList<Vehicle> bikeList = new ArrayList<Vehicle>();
 		
@@ -43,7 +44,7 @@ public class FilterPriceBikeServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE type=" + 2 + " AND avail = 'true' AND price<=" + price_range;
+		         sql = "SELECT * FROM vehicle WHERE type=" + 2 + " AND avail = 'true' AND area='" + selectedArea +"'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set

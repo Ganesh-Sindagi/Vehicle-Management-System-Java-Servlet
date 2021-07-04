@@ -22,6 +22,10 @@ public class BikeServlet extends HttpServlet {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
+		// Array List for filters
+		Area a = new Area();
+		ArrayList<Area> areaList = a.fetchAreaBike();
+		
 		ArrayList<Vehicle> bikeList = new ArrayList<Vehicle>();
 		
 		try {
@@ -99,6 +103,7 @@ public class BikeServlet extends HttpServlet {
 			}
 		} catch(Exception e){};
 		
+		request.setAttribute("areaList", areaList);
 		request.setAttribute("bikeList", bikeList);
 		RequestDispatcher rd = request.getRequestDispatcher("bike.jsp");
 		rd.forward(request, response);
