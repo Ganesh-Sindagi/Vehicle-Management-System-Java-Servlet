@@ -29,6 +29,9 @@ public class CarServlet extends HttpServlet {
 		// Array List for filters
 		Area a = new Area();
 		ArrayList<Area> areaList = a.fetchAreaCar();
+		
+		City c = new City();
+		ArrayList<City> cityList = c.fetchCityCar();
 
 		// Array List for cars
 		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
@@ -92,6 +95,7 @@ public class CarServlet extends HttpServlet {
 		} catch(Exception e){};
 		
 		request.setAttribute("areaList", areaList);
+		request.setAttribute("cityList", cityList);
 		request.setAttribute("carList", carList);
 		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
 		rd.forward(request, response);

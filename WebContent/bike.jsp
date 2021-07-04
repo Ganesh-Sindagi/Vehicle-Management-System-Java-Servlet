@@ -3,6 +3,7 @@
  <%@page import="java.util.ArrayList" %>
  <%@page import="com.vehicle.Vehicle" %>
  <%@page import="com.vehicle.Area" %>
+ <%@page import="com.vehicle.City" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,6 +43,22 @@
 					<input name="area" class="form-check-input" type="checkbox" value="<%= area.getArea() %>" id="flexCheckDefault" onChange="this.form.submit()">
 					<label class="form-check-label" for="flexCheckDefault">
 					    <% out.println(area.getArea()); %>
+					</label>
+				</div>
+    		<% } %>
+    	<% } %>
+    </form>
+    
+    <form action="/Vehicle/filtercitybike" method="POST">
+    	<p>Filter By City</p>
+    	<% ArrayList<City> cityList = (ArrayList)request.getAttribute("cityList"); %>
+    	<% if(!cityList.isEmpty()){ %>
+    		<% for(int i=0; i<cityList.size(); i++){ %>
+    			<% City city = (City)cityList.get(i); %>
+    			<div class="form-check">
+					<input name="city" class="form-check-input" type="checkbox" value="<%= city.getCity() %>" id="flexCheckDefault" onChange="this.form.submit()">
+					<label class="form-check-label" for="flexCheckDefault">
+					    <% out.println(city.getCity()); %>
 					</label>
 				</div>
     		<% } %>

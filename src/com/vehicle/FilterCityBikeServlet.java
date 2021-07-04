@@ -14,29 +14,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/filterareacar")
-public class FilterAreaCarServlet extends HttpServlet {
+@WebServlet("/filtercitybike")
+public class FilterCityBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/Vehicle/car");
+		response.sendRedirect("/Vehicle/bike");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
-		String selectedArea = (String)(request.getParameter("area"));
-		System.out.println("Price Range:\t" + selectedArea);
+		String selectedCity = (String)(request.getParameter("city"));
+		System.out.println("City:\t" + selectedCity);
 		
 		// Array List for filters
 		Area a = new Area();
-		ArrayList<Area> areaList = a.fetchAreaCar();
+		ArrayList<Area> areaList = a.fetchAreaBike();
 		
 		City c = new City();
 		ArrayList<City> cityList = c.fetchCityCar();
 		
-		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
+		ArrayList<Vehicle> bikeList = new ArrayList<Vehicle>();
 		
 		try {
 			Connection con = db.makeConnection();
@@ -46,15 +46,15 @@ public class FilterAreaCarServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE type=" + 4 + " AND avail = 'true' AND area='" + selectedArea +"'";
+		         sql = "SELECT * FROM vehicle WHERE type=" + 2 + " AND avail = 'true' AND city='" + selectedCity +"'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set
 		         if(!rs.isBeforeFirst()) {
-		        	 out.println("No Cars FOund");
+		        	 out.println("No bikes FOund");
 		         } else {
 		        	 while(rs.next()){
-		        		Vehicle car = new Vehicle();
+		        		Vehicle bike = new Vehicle();
 		        		 
 		        		int v_id = rs.getInt("v_id");
 		        		int owner_id = rs.getInt("owner_id");
@@ -73,24 +73,24 @@ public class FilterAreaCarServlet extends HttpServlet {
 				        boolean avail = Boolean.parseBoolean(rs.getString("avail"));
 				        
 				        
-				        car.setV_id(v_id);
-		        		car.setOwner_id(owner_id);
-		        		car.setType(type);
-		        		car.setModel(model);
-		        		car.setColor(color);
-		        		car.setReg_date(reg_date);
-		        		car.setImage(image);
-		        		car.setPrice(price);
-		        		car.setArea(area);
-		        		car.setCity(city);
-		        		car.setState(state);
-		        		car.setZip(zip);
-		        		car.setFuel_type(fuel_type);
-		        		car.setGear(gear);
-		        		car.setAvail(avail);
+				        bike.setV_id(v_id);
+		        		bike.setOwner_id(owner_id);
+		        		bike.setType(type);
+		        		bike.setModel(model);
+		        		bike.setColor(color);
+		        		bike.setReg_date(reg_date);
+		        		bike.setImage(image);
+		        		bike.setPrice(price);
+		        		bike.setArea(area);
+		        		bike.setCity(city);
+		        		bike.setState(state);
+		        		bike.setZip(zip);
+		        		bike.setFuel_type(fuel_type);
+		        		bike.setGear(gear);
+		        		bike.setAvail(avail);
 				        
-				        // Add car objects to carList
-				        carList.add(car);
+				        // Add bike objects to bikeList
+				        bikeList.add(bike);
 		        	 }
 		         }
 			}
@@ -98,8 +98,8 @@ public class FilterAreaCarServlet extends HttpServlet {
 		
 		request.setAttribute("areaList", areaList);
 		request.setAttribute("cityList", cityList);
-		request.setAttribute("carList", carList);
-		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
+		request.setAttribute("bikeList", bikeList);
+		RequestDispatcher rd = request.getRequestDispatcher("bike.jsp");
 		rd.forward(request, response);
 	}
 

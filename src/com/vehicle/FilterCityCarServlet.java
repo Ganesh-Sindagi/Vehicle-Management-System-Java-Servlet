@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/filterareacar")
-public class FilterAreaCarServlet extends HttpServlet {
+@WebServlet("/filtercitycar")
+public class FilterCityCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("/Vehicle/car");
 	}
@@ -26,8 +26,8 @@ public class FilterAreaCarServlet extends HttpServlet {
 		DbConnection db = new DbConnection();
 		PrintWriter out = response.getWriter();
 		
-		String selectedArea = (String)(request.getParameter("area"));
-		System.out.println("Price Range:\t" + selectedArea);
+		String selectedCity = (String)(request.getParameter("city"));
+		System.out.println("City:\t" + selectedCity);
 		
 		// Array List for filters
 		Area a = new Area();
@@ -35,6 +35,7 @@ public class FilterAreaCarServlet extends HttpServlet {
 		
 		City c = new City();
 		ArrayList<City> cityList = c.fetchCityCar();
+		
 		
 		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
 		
@@ -46,7 +47,7 @@ public class FilterAreaCarServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE type=" + 4 + " AND avail = 'true' AND area='" + selectedArea +"'";
+		         sql = "SELECT * FROM vehicle WHERE type=" + 4 + " AND avail = 'true' AND city='" + selectedCity +"'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set

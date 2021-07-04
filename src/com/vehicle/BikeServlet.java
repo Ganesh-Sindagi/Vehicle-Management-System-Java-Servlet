@@ -26,6 +26,9 @@ public class BikeServlet extends HttpServlet {
 		Area a = new Area();
 		ArrayList<Area> areaList = a.fetchAreaBike();
 		
+		City c = new City();
+		ArrayList<City> cityList = c.fetchCityCar();
+		
 		ArrayList<Vehicle> bikeList = new ArrayList<Vehicle>();
 		
 		try {
@@ -78,24 +81,7 @@ public class BikeServlet extends HttpServlet {
 		        		bike.setFuel_type(fuel_type);
 		        		bike.setGear(gear);
 		        		bike.setAvail(avail);
-				        
-				        // Print the values
-//				        out.println("v_id\t" + v_id);
-//				        out.println("owner_id\t" + owner_id);
-//				        out.println("type\t" + type);
-//				        out.println("model\t" + model);
-//				        out.println("color\t" + color);
-//				        out.println("reg_date\t" + reg_date);
-//				        out.println("image\t" + image);
-//				        out.println("price\t" + price);
-//				        out.println("area\t" + area);
-//				        out.println("city\t" + city);
-//				        out.println("state\t" + state);
-//				        out.println("zip\t" + zip);
-//				        out.println("fuel_type\t" + fuel_type);
-//				        out.println("gear\t" + gear);
-//				        out.println("avail\t" + avail);
-				        
+
 				        // Add bike objects to bikeList
 				        bikeList.add(bike);
 		        	 }
@@ -104,6 +90,7 @@ public class BikeServlet extends HttpServlet {
 		} catch(Exception e){};
 		
 		request.setAttribute("areaList", areaList);
+		request.setAttribute("cityList", cityList);
 		request.setAttribute("bikeList", bikeList);
 		RequestDispatcher rd = request.getRequestDispatcher("bike.jsp");
 		rd.forward(request, response);
