@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.vehicle.Vehicle;
-
 import com.vehicle.Area;
 
 @WebServlet("/car")
@@ -32,6 +31,9 @@ public class CarServlet extends HttpServlet {
 		
 		City c = new City();
 		ArrayList<City> cityList = c.fetchCityCar();
+		
+		State s = new State();
+		ArrayList<State> stateList = s.fetchStateCar();
 
 		// Array List for cars
 		ArrayList<Vehicle> carList = new ArrayList<Vehicle>();
@@ -96,6 +98,7 @@ public class CarServlet extends HttpServlet {
 		
 		request.setAttribute("areaList", areaList);
 		request.setAttribute("cityList", cityList);
+		request.setAttribute("stateList", stateList);
 		request.setAttribute("carList", carList);
 		RequestDispatcher rd = request.getRequestDispatcher("car.jsp");
 		rd.forward(request, response);

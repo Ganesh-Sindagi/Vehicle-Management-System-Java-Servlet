@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@page import="java.util.ArrayList" %>
- <%@page import="com.vehicle.Vehicle" %>
- <%@page import="com.vehicle.Area" %>
- <%@page import="com.vehicle.City" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="com.vehicle.Vehicle" %>
+<%@page import="com.vehicle.Area" %>
+<%@page import="com.vehicle.City" %>
+<%@page import="com.vehicle.State" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -59,6 +60,22 @@
 					<input name="city" class="form-check-input" type="checkbox" value="<%= city.getCity() %>" id="flexCheckDefault" onChange="this.form.submit()">
 					<label class="form-check-label" for="flexCheckDefault">
 					    <% out.println(city.getCity()); %>
+					</label>
+				</div>
+    		<% } %>
+    	<% } %>
+    </form>
+    
+    <form action="/Vehicle/filterstatebike" method="POST">
+    	<p>Filter By State</p>
+    	<% ArrayList<State> stateList = (ArrayList)request.getAttribute("stateList"); %>
+    	<% if(!stateList.isEmpty()){ %>
+    		<% for(int i=0; i<stateList.size(); i++){ %>
+    			<% State state = (State)stateList.get(i); %>
+    			<div class="form-check">
+					<input name="state" class="form-check-input" type="checkbox" value="<%= state.getState() %>" id="flexCheckDefault" onChange="this.form.submit()">
+					<label class="form-check-label" for="flexCheckDefault">
+					    <% out.println(state.getState()); %>
 					</label>
 				</div>
     		<% } %>
