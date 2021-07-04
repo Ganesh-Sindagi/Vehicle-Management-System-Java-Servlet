@@ -58,7 +58,7 @@
 						<td><% out.println(vehicle.getModel()); %></td>
 						<td><% out.println(vehicle.getColor()); %></td>
 						<td><% out.println(vehicle.getReg_date()); %></td>
-						<td><% out.println(vehicle.getImage()); %></td>
+						<td><img src="<% out.println(vehicle.getImage()); %>"></td>
 						<td><% out.println(vehicle.getPrice()); %></td>
 						<td><% out.println(vehicle.getArea()); %></td>
 						<td><% out.println(vehicle.getCity()); %></td>

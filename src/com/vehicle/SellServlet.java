@@ -36,7 +36,7 @@ public class SellServlet extends HttpServlet {
 				// Execute SQL query
 		         Statement st = con.createStatement();
 		         String sql;
-		         sql = "SELECT * FROM vehicle WHERE owner_id=" + session.getAttribute("user_id") + " AND avail='true'";
+		         sql = "SELECT * FROM vehicle WHERE user_id=" + session.getAttribute("user_id") + " AND avail='true'";
 		         ResultSet rs = st.executeQuery(sql);
 		         
 		         // Extract data from result set
@@ -145,7 +145,7 @@ public class SellServlet extends HttpServlet {
 			
 				// Execute SQL query for Vehicle
 				String sql;
-				sql = "INSERT INTO vehicle (type, model, color, reg_date, image, price, area, city, state, zip, owner_id, fuel_type, gear, avail) VALUES (" + type + ", '" +  model + "', '" + color + "', '" + reg_date + "', '" + image + "', " + price + ", '" + area + "', '" + city + "', '" + state + "', '" + zip + "', " + newOwnerCount + ", '" + fuel_type + "', '" + gear + "', '" + avail + "')";
+				sql = "INSERT INTO vehicle (type, model, color, reg_date, image, price, area, city, state, zip, owner_id, fuel_type, gear, avail, user_id) VALUES (" + type + ", '" +  model + "', '" + color + "', '" + reg_date + "', '" + image + "', " + price + ", '" + area + "', '" + city + "', '" + state + "', '" + zip + "', " + newOwnerCount + ", '" + fuel_type + "', '" + gear + "', '" + avail + "', " + session.getAttribute("user_id") + ")";
 				PreparedStatement st = con.prepareStatement(sql);
 				st.executeUpdate();
 				
