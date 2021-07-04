@@ -22,6 +22,14 @@
     <h1>Welcome <%=name%></h1>
     <h1>This is the Bike section</h1>
     
+    <h3>Filters</h3>
+    <form action="/Vehicle/filterpricebike" method="POST">
+    	<p>Rs 10K</p>
+	    <label for="customRange2" class="form-label">Select Price Range</label>
+		<input name="price_range" type="range" class="form-range" min="10000" max="1000000" step="5000" value="200000" id="customRange2" onChange="this.form.submit()">
+		<p>Rs 10Lakh</p>
+    </form>
+    
     <% ArrayList<Vehicle> bikeList = (ArrayList)request.getAttribute("bikeList"); %>
     
     <h2>Available bikes <%=bikeList.size()%></h2>
@@ -58,7 +66,7 @@
 					<td><% out.println(bike.getModel()); %></td>
 					<td><% out.println(bike.getColor()); %></td>
 					<td><% out.println(bike.getReg_date()); %></td>
-					<td><% out.println(bike.getImage()); %></td>
+					<td><img src="<% out.println(bike.getImage()); %>"></td>
 					<td><% out.println(bike.getPrice()); %></td>
 					<td><% out.println(bike.getArea()); %></td>
 					<td><% out.println(bike.getCity()); %></td>

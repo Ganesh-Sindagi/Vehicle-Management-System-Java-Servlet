@@ -23,6 +23,15 @@
     <h1>Welcome <%=name%></h1>
     <h1>This is the car section</h1>
     
+    <h3>Filters</h3>
+    <form action="/Vehicle/filterpricecar" method="POST">
+    	<p>Rs 10L</p>
+	    <label for="customRange2" class="form-label">Select Price Range</label>
+		<input name="price_range" type="range" class="form-range" min="100000" max="10000000" step="5000" value="5000000" id="customRange2" onChange="this.form.submit()">
+		<p>Rs 1 Crore</p>
+    </form>
+    
+    
     <% ArrayList<Vehicle> carList = (ArrayList)request.getAttribute("carList"); %>
     
     <h2>Available cars <%=carList.size()%></h2>
