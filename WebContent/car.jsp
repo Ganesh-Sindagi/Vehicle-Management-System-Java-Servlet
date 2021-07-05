@@ -63,6 +63,18 @@
        		/*color: white !important;*/
        }
        
+       /* Styles for filers */
+	   .form-range {
+		   width: 80%;
+	   } 
+       
+	   .filters-div {
+		   margin-left: 20px;
+	   }
+	   
+	   .nav-name {
+			color: #F8F3D4 !important;
+		}
     </style>
 	
     <!-- Navbar -->
@@ -89,86 +101,101 @@
                     <li class="nav-item">
                     	<a class="nav-link active" href="/Vehicle/orders">My Orders</a>
                     </li>
+                    <li class="nav-item">
+                    	<a class="nav-link active nav-name"><%= name %></a>
+                    </li>
                 </ul>
                 <a href="/Vehicle/logout"><Button class="btn btn-danger logout">Logout</Button></a><br /><br />
             </div>
         </div>
      </nav>
-
-    <h1>Welcome <%=name%></h1>
-    <h1>This is the car section</h1>
+     
     
-    <h3>Filters</h3>
-    <form action="/Vehicle/filterpricecar" method="POST">
-    	<p>Rs 10L</p>
-	    <label for="customRange2" class="form-label">Select Price Range</label>
-		<input name="price_range" type="range" class="form-range" min="100000" max="10000000" step="5000" value="5000000" id="customRange2" onChange="this.form.submit()">
-		<p>Rs 1 Crore</p>
-    </form>
+    <div class="container-fluid">
+	  <div class="row" style="background-color:red;">
+	    <div class="col-md-3">
+	      <div class="filters-div">
+	      
+	      <h3 style="margin-top: 20px;">Filters</h3>
+	      <p>Filter By Price</p>
+		    <form action="/Vehicle/filterpricecar" method="POST">
+			    <label for="customRange2" class="form-label">Select Price Range</label>
+				<input name="price_range" type="range" class="form-range" min="100000" max="10000000" step="5000" value="5000000" id="customRange2" onChange="this.form.submit()">
+				<p>Rs 10L<span style="margin-left: 9rem;">Rs 1 Crore</</span></p>
+		    </form>
+		    
+		    <form action="/Vehicle/filterareacar" method="POST">
+		    	<p>Filter By Area</p>
+		    	<% ArrayList<Area> areaList = (ArrayList)request.getAttribute("areaList"); %>
+		    	<% if(!areaList.isEmpty()){ %>
+		    		<% for(int i=0; i<areaList.size(); i++){ %>
+		    			<% Area area = (Area)areaList.get(i); %>
+		    			<div class="form-check">
+							<input name="area" class="form-check-input" type="checkbox" value="<%= area.getArea() %>" id="flexCheckDefault" onChange="this.form.submit()">
+							<label class="form-check-label" for="flexCheckDefault">
+							    <% out.println(area.getArea()); %>
+							</label>
+						</div>
+		    		<% } %>
+		    	<% } %>
+		    </form>
+		    
+		    <form action="/Vehicle/filtercitycar" method="POST">
+		    	<p>Filter By City</p>
+		    	<% ArrayList<City> cityList = (ArrayList)request.getAttribute("cityList"); %>
+		    	<% if(!cityList.isEmpty()){ %>
+		    		<% for(int i=0; i<cityList.size(); i++){ %>
+		    			<% City city = (City)cityList.get(i); %>
+		    			<div class="form-check">
+							<input name="city" class="form-check-input" type="checkbox" value="<%= city.getCity() %>" id="flexCheckDefault" onChange="this.form.submit()">
+							<label class="form-check-label" for="flexCheckDefault">
+							    <% out.println(city.getCity()); %>
+							</label>
+						</div>
+		    		<% } %>
+		    	<% } %>
+		    </form>
+		    
+		    <form action="/Vehicle/filterstatecar" method="POST">
+		    	<p>Filter By State</p>
+		    	<% ArrayList<State> stateList = (ArrayList)request.getAttribute("stateList"); %>
+		    	<% if(!stateList.isEmpty()){ %>
+		    		<% for(int i=0; i<stateList.size(); i++){ %>
+		    			<% State state = (State)stateList.get(i); %>
+		    			<div class="form-check">
+							<input name="state" class="form-check-input" type="checkbox" value="<%= state.getState() %>" id="flexCheckDefault" onChange="this.form.submit()">
+							<label class="form-check-label" for="flexCheckDefault">
+							    <% out.println(state.getState()); %>
+							</label>
+						</div>
+		    		<% } %>
+		    	<% } %>
+		    </form>
+		    
+		    <form action="/Vehicle/filterzipcar" method="POST">
+		    	<p>Filter By Zip</p>
+		    	<% ArrayList<Zip> zipList = (ArrayList)request.getAttribute("zipList"); %>
+		    	<% if(!zipList.isEmpty()){ %>
+		    		<% for(int i=0; i<zipList.size(); i++){ %>
+		    			<% Zip zip = (Zip)zipList.get(i); %>
+		    			<div class="form-check">
+							<input name="zip" class="form-check-input" type="checkbox" value="<%= zip.getZip() %>" id="flexCheckDefault" onChange="this.form.submit()">
+							<label class="form-check-label" for="flexCheckDefault">
+							    <% out.println(zip.getZip()); %>
+							</label>
+						</div>
+		    		<% } %>
+		    	<% } %>
+		    </form>
+	      </div>
+	    </div>
+	    <div class="col-md-9" style="background-color:blue;">
+	      Cars
+	    </div>
+	  </div>
+	</div>
     
-    <form action="/Vehicle/filterareacar" method="POST">
-    	<p>Filter By Area</p>
-    	<% ArrayList<Area> areaList = (ArrayList)request.getAttribute("areaList"); %>
-    	<% if(!areaList.isEmpty()){ %>
-    		<% for(int i=0; i<areaList.size(); i++){ %>
-    			<% Area area = (Area)areaList.get(i); %>
-    			<div class="form-check">
-					<input name="area" class="form-check-input" type="checkbox" value="<%= area.getArea() %>" id="flexCheckDefault" onChange="this.form.submit()">
-					<label class="form-check-label" for="flexCheckDefault">
-					    <% out.println(area.getArea()); %>
-					</label>
-				</div>
-    		<% } %>
-    	<% } %>
-    </form>
     
-    <form action="/Vehicle/filtercitycar" method="POST">
-    	<p>Filter By City</p>
-    	<% ArrayList<City> cityList = (ArrayList)request.getAttribute("cityList"); %>
-    	<% if(!cityList.isEmpty()){ %>
-    		<% for(int i=0; i<cityList.size(); i++){ %>
-    			<% City city = (City)cityList.get(i); %>
-    			<div class="form-check">
-					<input name="city" class="form-check-input" type="checkbox" value="<%= city.getCity() %>" id="flexCheckDefault" onChange="this.form.submit()">
-					<label class="form-check-label" for="flexCheckDefault">
-					    <% out.println(city.getCity()); %>
-					</label>
-				</div>
-    		<% } %>
-    	<% } %>
-    </form>
-    
-    <form action="/Vehicle/filterstatecar" method="POST">
-    	<p>Filter By State</p>
-    	<% ArrayList<State> stateList = (ArrayList)request.getAttribute("stateList"); %>
-    	<% if(!stateList.isEmpty()){ %>
-    		<% for(int i=0; i<stateList.size(); i++){ %>
-    			<% State state = (State)stateList.get(i); %>
-    			<div class="form-check">
-					<input name="state" class="form-check-input" type="checkbox" value="<%= state.getState() %>" id="flexCheckDefault" onChange="this.form.submit()">
-					<label class="form-check-label" for="flexCheckDefault">
-					    <% out.println(state.getState()); %>
-					</label>
-				</div>
-    		<% } %>
-    	<% } %>
-    </form>
-    
-    <form action="/Vehicle/filterzipcar" method="POST">
-    	<p>Filter By Zip</p>
-    	<% ArrayList<Zip> zipList = (ArrayList)request.getAttribute("zipList"); %>
-    	<% if(!zipList.isEmpty()){ %>
-    		<% for(int i=0; i<zipList.size(); i++){ %>
-    			<% Zip zip = (Zip)zipList.get(i); %>
-    			<div class="form-check">
-					<input name="zip" class="form-check-input" type="checkbox" value="<%= zip.getZip() %>" id="flexCheckDefault" onChange="this.form.submit()">
-					<label class="form-check-label" for="flexCheckDefault">
-					    <% out.println(zip.getZip()); %>
-					</label>
-				</div>
-    		<% } %>
-    	<% } %>
-    </form>
     
     <% ArrayList<Vehicle> carList = (ArrayList)request.getAttribute("carList"); %>
     

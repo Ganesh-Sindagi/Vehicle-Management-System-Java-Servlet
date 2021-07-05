@@ -33,6 +33,7 @@
 		.logout {
 			color: white;
 			margin-right: 5rem;
+			font-size: 1.1rem;
 		}
         
         .navbar-brand {
@@ -55,6 +56,81 @@
        .nav-link {
        		/*color: white !important;*/
        }
+       
+       .namehead {
+       		font-family: 'Poppins', sans-serif !important;
+       		font-size: 3rem;
+       		margin-top: 2rem;
+       		margin-left: 9rem;
+       		color: #222831;
+       }
+       
+       .card {
+		    margin: 3rem 2rem;
+		    object-fit: scale-down;
+		    border-radius: 7%;
+		    overflow: hidden;
+		    box-shadow: 5px 5px 5px rgb(60, 81, 85);
+		    transition-delay: 100ms;
+		}
+		
+		/* Footer Section */
+
+		#ganesh {
+		    font-family: 'Ubuntu', sans-serif;
+		    font-size: 20px;
+		    padding-bottom: 20px;
+		    margin-left: 3rem;
+		}
+		
+		.fth {
+		    margin-top: 70px;
+		}
+		
+		.footer {
+		    position: absolute;
+		    margin-top: 2rem;
+		}
+		
+		.footer-item {
+		    padding-top: 10px;
+		    margin-left: 550px;
+		}
+		
+		.social-icon {
+		    color: #000;
+		    margin-left: 50px;
+		    font-size: 30px;
+		    padding-bottom: 20px;
+		}
+		
+		#copyright {
+		    font-family: 'Ubuntu', sans-serif;
+		    font-size: 16px;
+		    margin-left: 80px;
+		}
+       
+       .card:hover{ 
+		    transform: translateY(-5%);
+		}
+		
+		.flight-img {
+		    height: 11.8rem;
+		}
+		
+		.go-btn {
+		    background-color: #00ADB5;
+		    color: white;
+		}
+		
+		.go-btn:hover {
+		    background-color: #3FC1C9;
+		    color: white;
+		}
+		
+		.nav-name {
+			color: #F8F3D4 !important;
+		}
        
     </style>
 	
@@ -82,6 +158,9 @@
                     <li class="nav-item">
                     	<a class="nav-link active" href="/Vehicle/orders">My Orders</a>
                     </li>
+                    <li class="nav-item">
+                    	<a class="nav-link active nav-name"><%= name %></a>
+                    </li>
                 </ul>
                 <a href="/Vehicle/logout"><Button class="btn btn-danger logout">Logout</Button></a><br /><br />
             </div>
@@ -91,8 +170,58 @@
     <h1 class="namehead">Welcome <%= name %></h1>
     
     
+    <!-- Cards -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="https://images.unsplash.com/photo-1597404294360-feeeda04612e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2FyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top flight-img" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Cars</h5>
+              <p class="card-text">View and Order Cars</p>
+              <a href="/Vehicle/car" class="btn go-btn">Cars</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YmlrZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Bikes</h5>
+              <p class="card-text">View and Order Bikes</p>
+              <a href="/Vehicle/bike" class="btn go-btn">Bikes</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="https://images.unsplash.com/photo-1617724054780-ef6bd6b21e17?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FyJTIwb3duZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Sell</h5>
+              <p class="card-text">Sell Your Vehicle</p>
+              <a href="/Vehicle/sell" class="btn go-btn">Sell</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
-     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-item">
+        <h1 id="ganesh">Developed by Ganesh Sindagi</h1>
+        <a href="https://www.facebook.com/ganesh.sindagi.3"><i class="social-icon fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/GaneshSindagi"><i class="social-icon fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/ganesh_sindagi/"><i class="social-icon fab fa-instagram"></i></a>
+        <a href = "mailto:ganeshsindagi7@gmail.com"><i class="social-icon fas fa-envelope"></i></a>
+        <p id="copyright">Copyright 2020 MotorHub</p>
+        </div>
+    </footer>
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://kit.fontawesome.com/b6a0edf9cb.js" crossorigin="anonymous"></script>
+    
+    <!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

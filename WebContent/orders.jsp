@@ -60,6 +60,10 @@
        		/*color: white !important;*/
        }
        
+       .nav-name {
+			color: #F8F3D4 !important;
+		}
+       
     </style>
 	
     <!-- Navbar -->
@@ -85,6 +89,9 @@
                     </li>
                     <li class="nav-item">
                     	<a class="nav-link active act-cust"" href="/Vehicle/orders">My Orders</a>
+                    </li>
+                    <li class="nav-item">
+                    	<a class="nav-link active nav-name"><%= name %></a>
                     </li>
                 </ul>
                 <a href="/Vehicle/logout"><Button class="btn btn-danger logout">Logout</Button></a><br /><br />
