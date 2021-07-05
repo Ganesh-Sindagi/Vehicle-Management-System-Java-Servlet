@@ -26,7 +26,7 @@
 
 	<style>
     	body {
-            background-color: #EEEEEE;
+            /* background-color: #EEEEEE; */
             font-family: 'Poppins', sans-serif;
         }
         

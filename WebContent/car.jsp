@@ -29,7 +29,7 @@
 
 	<style>
     	body {
-            background-color: #EEEEEE;
+            /* background-color: #EEEEEE; */
             font-family: 'Poppins', sans-serif;
         }
         
@@ -75,6 +75,33 @@
 	   .nav-name {
 			color: #F8F3D4 !important;
 		}
+		
+		.vehicle-card {
+			width: 65.5rem;
+			margin-top: 2rem;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px rgb(60, 81, 85);
+		}
+		
+		.veh-img {
+			width: 500px;
+			height: 300px;
+			border-radius: 30px;
+			margin-left: 10rem;
+		}
+		
+		.card-head {
+			margin-top: 20px;
+		}
+		
+		.book-btn {
+			margin-left: 25rem;
+		}
+		
+		.table {
+			margin-top: 20px;
+		}
+		
     </style>
 	
     <!-- Navbar -->
@@ -112,11 +139,11 @@
      
     
     <div class="container-fluid">
-	  <div class="row" style="background-color:red;">
+	  <div class="row">
 	    <div class="col-md-3">
 	      <div class="filters-div">
 	      
-	      <h3 style="margin-top: 20px;">Filters</h3>
+	      <h3 style="margin-top: 2rem;">Filters</h3>
 	      <p>Filter By Price</p>
 		    <form action="/Vehicle/filterpricecar" method="POST">
 			    <label for="customRange2" class="form-label">Select Price Range</label>
@@ -125,7 +152,7 @@
 		    </form>
 		    
 		    <form action="/Vehicle/filterareacar" method="POST">
-		    	<p>Filter By Area</p>
+		    	<p style="margin-top: 30px;">Filter By Area</p>
 		    	<% ArrayList<Area> areaList = (ArrayList)request.getAttribute("areaList"); %>
 		    	<% if(!areaList.isEmpty()){ %>
 		    		<% for(int i=0; i<areaList.size(); i++){ %>
@@ -141,7 +168,7 @@
 		    </form>
 		    
 		    <form action="/Vehicle/filtercitycar" method="POST">
-		    	<p>Filter By City</p>
+		    	<p style="margin-top: 30px;">Filter By City</p>
 		    	<% ArrayList<City> cityList = (ArrayList)request.getAttribute("cityList"); %>
 		    	<% if(!cityList.isEmpty()){ %>
 		    		<% for(int i=0; i<cityList.size(); i++){ %>
@@ -157,7 +184,7 @@
 		    </form>
 		    
 		    <form action="/Vehicle/filterstatecar" method="POST">
-		    	<p>Filter By State</p>
+		    	<p style="margin-top: 30px;">Filter By State</p>
 		    	<% ArrayList<State> stateList = (ArrayList)request.getAttribute("stateList"); %>
 		    	<% if(!stateList.isEmpty()){ %>
 		    		<% for(int i=0; i<stateList.size(); i++){ %>
@@ -173,7 +200,7 @@
 		    </form>
 		    
 		    <form action="/Vehicle/filterzipcar" method="POST">
-		    	<p>Filter By Zip</p>
+		    	<p style="margin-top: 30px;">Filter By Zip</p>
 		    	<% ArrayList<Zip> zipList = (ArrayList)request.getAttribute("zipList"); %>
 		    	<% if(!zipList.isEmpty()){ %>
 		    		<% for(int i=0; i<zipList.size(); i++){ %>
@@ -189,71 +216,117 @@
 		    </form>
 	      </div>
 	    </div>
-	    <div class="col-md-9" style="background-color:blue;">
-	      Cars
-	    </div>
-	  </div>
-	</div>
+	    
+	    
+	    <div class="col-md-9">
+			<% ArrayList<Vehicle> carList = (ArrayList)request.getAttribute("carList"); %>
+			<h2 class="card-head">Available cars <%=carList.size()%></h2>
     
-    
-    
-    <% ArrayList<Vehicle> carList = (ArrayList)request.getAttribute("carList"); %>
-    
-    <h2>Available cars <%=carList.size()%></h2>
-    
-    <% if(!carList.isEmpty()) { %>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">Vehicle_id</th>
-					<th scope="col">Type</th>
-					<th scope="col">Model</th>
-					<th scope="col">Color</th>
-					<th scope="col">Reg. Date</th>
-					<th scope="col">Image</th>
-					<th scope="col">Price</th>
-					<th scope="col">Area</th>
-					<th scope="col">City</th>
-					<th scope="col">State</th>
-					<th scope="col">Zip</th>
-					<th scope="col">Owner_id</th>
-					<th scope="col">Fuel_type</th>
-					<th scope="col">Gear</th>
-					<th scope="col">Available</th>
-					<th scope="col">Book</th>
-				</tr>
-			</thead>
-		
-			<tbody>
-       			<% for(int i=0; i<carList.size(); i++){ %>
-       	    		<% Vehicle car = (Vehicle)carList.get(i); %>
-       	    		<tr>
-						<td><% out.println(car.getV_id()); %></td>
-						<td><% out.println(car.getType()); %></td>
-						<td><% out.println(car.getModel()); %></td>
-						<td><% out.println(car.getColor()); %></td>
-						<td><% out.println(car.getReg_date()); %></td>
-						<td><img src="<% out.println(car.getImage()); %>"></td>
-						<td><% out.println(car.getPrice()); %></td>
-						<td><% out.println(car.getArea()); %></td>
-						<td><% out.println(car.getCity()); %></td>
-						<td><% out.println(car.getState()); %></td>
-						<td><% out.println(car.getZip()); %></td>
-						<td><% out.println(car.getOwner_id()); %></td>
-						<td><% out.println(car.getFuel_type()); %></td>
-						<td><% out.println(car.getGear()); %></td>
-						<td><% out.println(car.isAvail()); %></td>
-						<td>
-							<form action="/Vehicle/book" method="POST">
-								<input type="hidden" name="owner_id" value="<%= car.getOwner_id() %>">
-								<button type="submit" class="btn btn-dark" name="v_id" value="<%= car.getV_id() %>">Book</button>
-							</form>
-						</td>
-					</tr>
-       	    	<% } %>
-       	    	</tbody>
-       	    </table>
-       <% } %>
+   			<% if(!carList.isEmpty()) { %>
+				<% for(int i=0; i<carList.size(); i++){ %>
+					<% Vehicle car = (Vehicle)carList.get(i); %>
+					<div class="card vehicle-card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12">
+									<img class="veh-img" src="<% out.println(car.getImage()); %>">
+								</div>
+								
+							</div>
+							
+							<table class="table table-hover table-borderless">
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Vehicle_id</th>
+												<th scope="col">Type</th>
+												<th scope="col">Model</th>
+												<th scope="col">Color</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(car.getV_id()); %></td>
+												<td><% out.println(car.getType()); %></td>
+												<td><% out.println(car.getModel()); %></td>
+												<td><% out.println(car.getColor()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Reg. Date</th>
+												<th scope="col">Price</th>
+												<th scope="col">Area</th>
+												<th scope="col">City</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(car.getReg_date()); %></td>
+												<td><% out.println(car.getPrice()); %></td>
+												<td><% out.println(car.getArea()); %></td>
+												<td><% out.println(car.getCity()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">State</th>
+												<th scope="col">Zip</th>
+												<th scope="col">Owner_id</th>
+												<th scope="col">Fuel_type</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(car.getState()); %></td>
+												<td><% out.println(car.getZip()); %></td>
+												<td><% out.println(car.getOwner_id()); %></td>
+												<td><% out.println(car.getFuel_type()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Gear</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(car.getGear()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+							</table>
+							<div class="row">
+								<div class="col-md-12">
+									<form action="/Vehicle/book" method="POST">
+										<input type="hidden" name="owner_id" value="<%= car.getOwner_id() %>">
+										<button type="submit" class="btn btn-dark book-btn" name="v_id" value="<%= car.getV_id() %>">Book Vehicle</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% } %>
+			<% } %>
+		</div>
  
 </body>
 </html>
