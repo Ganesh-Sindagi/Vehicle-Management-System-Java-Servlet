@@ -313,13 +313,13 @@
 		
 		<form action="/Vehicle/sell" method="POST">
 			<label class="form-label">Name: </label>
-			<input class="form-control" type="text" name="name">
+			<input class="form-control" type="text" name="name" required>
 			<br><br><label class="form-label">Address: </label>
-			<textarea name="address" rows="4" cols="50" class="form-control"></textarea>
+			<textarea name="address" rows="4" cols="50" class="form-control" required></textarea>
 			<br><br><label class="form-label">Phone: </label>
-			<input type="tel" name="phone" class="form-control">
+			<input type="tel" name="phone" class="form-control" required>
 			<br><br><label class="form-label">Email: </label>
-			<input type="email" name="email" class="form-control">
+			<input type="email" name="email" class="form-control" required>
 	
 			<br><p>Your Vehicle Detail</p>
 	
@@ -329,27 +329,27 @@
 				<option value="4">4 Wheeler</option>
 			</select>
 			<br><br><label class="form-label">Model: </label>
-			<input type="text" name="model" class="form-control">
+			<input type="text" name="model" class="form-control" required>
 			<br><br><label class="form-label">Color: </label>
-			<input type="text" name="color" class="form-control">
+			<input type="text" name="color" class="form-control" required>
 			<br><br><label class="form-label">Registration Date: </label>
-			<input type="date" name="reg_date" class="form-control">
+			<input type="date" name="reg_date" class="form-control" required>
 			<br><br><label class="form-label">Image URL: </label>
-			<input type="text" name="image" class="form-control">
+			<input type="text" name="image" class="form-control" required>
 			<br><br><label class="form-label">Price: </label>
-			<input type="text" name="price" class="form-control">
+			<input type="text" name="price" class="form-control" required>
 			<br><br><label class="form-label">Area: </label>
-			<input type="text" name="area" class="form-control">
+			<input type="text" name="area" class="form-control" required>
 			<br><br><label class="form-label">City: </label>
-			<input type="text" name="city" class="form-control">
+			<input type="text" name="city" class="form-control" required>
 			<br><br><label class="form-label">State: </label>
-			<input type="text" name="state" class="form-control">
+			<input type="text" name="state" class="form-control" required>
 			<br><br><label class="form-label">Zip: </label>
-			<input type="text" name="zip" class="form-control">
+			<input type="text" name="zip" class="form-control" required>
 			<br><br><label class="form-label">Fuel_type: </label>
-			<input type="text" name="fuel_type" class="form-control">
+			<input type="text" name="fuel_type" class="form-control" required>
 			<br><br><label class="form-label">Gear: </label>
-			<input type="text" name="gear" class="form-control">
+			<input type="text" name="gear" class="form-control" required>
 			<br><br>
 			<button type="submit" class="btn btn-success">Register Vehicle</button>
 		</form>

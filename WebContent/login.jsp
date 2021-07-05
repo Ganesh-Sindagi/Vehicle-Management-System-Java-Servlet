@@ -5,13 +5,84 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>vehicle-Login</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
 </head>
+
+<style>
+	body {
+	    background: linear-gradient(to right, #d53369, #cbad6d);
+	}
+	
+	.card {
+	    margin-top: 9rem;
+	    width: 50rem;
+	    height: 27rem;
+	    padding: 1rem;
+	    margin-left: 35rem;
+	    font-family: 'Poppins', sans-serif;
+	}
+	
+	.card-title {
+	    font-weight: 700;
+	    font-size: 2.5rem;
+	}
+	
+	#emaillabel {
+	    margin-top: 1rem;
+	    font-weight: 500;
+	    font-size: 1.5rem;
+	}
+	
+	#exampleInputEmail1 {
+	    margin-top: 5px;
+	    font-weight: 500;
+	}
+	
+	#exampleInputPassword1 {
+	    margin-top: 5px;
+	}
+	
+	#plabel {
+	    margin-top: 1rem;
+	    font-weight: 500;
+	    font-size: 1.5rem;
+	}
+	
+	.btn-dark {
+	    font-weight: 500;
+	    margin-top: 1.5rem;
+	    margin-bottom: 10px;
+	} 
+	
+	.btn-success {
+	    font-weight: 500;
+	    margin-top: 20px;
+	} 
+</style>
+
 <body>
-	<h1>Login</h1>
-    <form action="/Vehicle/login" method="POST">
-        <input type="email" name="email" placeholder="Enter your email"><br><br>
-        <input type="password" name="password" placeholder="Enter your password"><br><br>
-        <button type="submit" name="login-btn">Login</button>
-    </form>
+	
+	<div class="card" style="width: 23rem;">
+        <div class="card-body">
+          <h5 class="card-title">Login</h5>
+
+          <form action="/Vehicle/login" method="POST">
+            <div class="form-group">
+              <label id="emaillabel" for="exampleInputEmail1">Email</label>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label id="plabel" for="exampleInputPassword1">Password</label>
+              <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+            </div>
+            <button id="signup" type="submit" class="btn btn-success">Login</button>
+          </form>
+        </div>
+    </div>
+
 </body>
 </html>
