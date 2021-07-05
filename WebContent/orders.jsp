@@ -312,8 +312,6 @@
 	    
 	  </div>
 	</div>
-	
-
 
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://kit.fontawesome.com/b6a0edf9cb.js" crossorigin="anonymous"></script>
