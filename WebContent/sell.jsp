@@ -63,6 +63,35 @@
        .nav-name {
 			color: #F8F3D4 !important;
 		}
+		
+		.vehicle-vehicled {
+			width: 65.5rem;
+			margin-top: 2rem;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px rgb(60, 81, 85);
+			margin-left: 15rem;
+		}
+		
+		.veh-img {
+			width: 500px;
+			height: 300px;
+			border-radius: 30px;
+			margin-left: 10rem;
+		}
+		
+		.vehicled-head {
+			margin-top: 20px;
+			margin-left: 6rem;
+		}
+		
+		.book-btn {
+			margin-left: 25rem;
+			margin-bottom: 1rem;
+		}
+		
+		.table {
+			margin-top: 20px;
+		}
        
     </style>
 	
@@ -79,7 +108,7 @@
                     <a class="nav-link active" href="/Vehicle/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                    	<a class="nav-link active" href="/Vehicle/car">Buy a Car</a>
+                    	<a class="nav-link active" href="/Vehicle/vehicle">Buy a vehicle</a>
                     </li>
                     <li class="nav-item">
                     	<a class="nav-link active" href="/Vehicle/bike">Buy a Bike</a>
@@ -99,67 +128,134 @@
         </div>
      </nav>
 	
-    <h1>Welcome <%= name %></h1>
-
-    <% ArrayList<Vehicle> vehicleList = (ArrayList)request.getAttribute("vehicleList"); %>
-    		
-	<% if(!vehicleList.isEmpty()) { %>
-		<h3>Your Vehicles: </h1>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">Vehicle_id</th>
-					<th scope="col">Type</th>
-					<th scope="col">Model</th>
-					<th scope="col">Color</th>
-					<th scope="col">Reg. Date</th>
-					<th scope="col">Image</th>
-					<th scope="col">Price</th>
-					<th scope="col">Area</th>
-					<th scope="col">City</th>
-					<th scope="col">State</th>
-					<th scope="col">Zip</th>
-					<th scope="col">Owner_id</th>
-					<th scope="col">Fuel_type</th>
-					<th scope="col">Gear</th>
-					<th scope="col">Available</th>
-					<th scope="col">Delete</th>
-				</tr>
-			</thead>
-		
-			<tbody>
+	<div class="vehicled">
+	  <div class="vehicled-body">
+	    
+	    <div class="row">
+	    	
+	    	<div class="col-md-9">
+			<% ArrayList<Vehicle> vehicleList = (ArrayList)request.getAttribute("vehicleList"); %>
+			<h2 class="vehicled-head">Your vehicles: <%=vehicleList.size()%></h2>
+    
+   			<% if(!vehicleList.isEmpty()) { %>
 				<% for(int i=0; i<vehicleList.size(); i++){ %>
-					<% Vehicle vehicle = (Vehicle)vehicleList.get(i);%>
-						<tr>
-						<td><% out.println(vehicle.getV_id()); %></td>
-						<td><% out.println(vehicle.getType()); %></td>
-						<td><% out.println(vehicle.getModel()); %></td>
-						<td><% out.println(vehicle.getColor()); %></td>
-						<td><% out.println(vehicle.getReg_date()); %></td>
-						<td><img src="<% out.println(vehicle.getImage()); %>"></td>
-						<td><% out.println(vehicle.getPrice()); %></td>
-						<td><% out.println(vehicle.getArea()); %></td>
-						<td><% out.println(vehicle.getCity()); %></td>
-						<td><% out.println(vehicle.getState()); %></td>
-						<td><% out.println(vehicle.getZip()); %></td>
-						<td><% out.println(vehicle.getOwner_id()); %></td>
-						<td><% out.println(vehicle.getFuel_type()); %></td>
-						<td><% out.println(vehicle.getGear()); %></td>
-						<td><% out.println(vehicle.isAvail()); %></td>
-						<td>
-							<form action="/Vehicle/deletevehicle" method="POST">
-								<input type="hidden" name="owner_id" value="<%= vehicle.getOwner_id() %>">
-								<button type="submit" class="btn btn-danger" name="v_id" value="<%= vehicle.getV_id() %>">Delete</button>
-							</formm>
-						</td>
-					</tr>
+					<% Vehicle vehicle = (Vehicle)vehicleList.get(i); %>
+					<div class="vehicled vehicle-vehicled">
+						<div class="vehicled-body">
+							<div class="row">
+								<div class="col-md-12">
+									<img class="veh-img" src="<% out.println(vehicle.getImage()); %>">
+								</div>
+								
+							</div>
+							
+							<table class="table table-hover table-borderless">
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Vehicle_id</th>
+												<th scope="col">Type</th>
+												<th scope="col">Model</th>
+												<th scope="col">Color</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getV_id()); %></td>
+												<td><% out.println(vehicle.getType()); %></td>
+												<td><% out.println(vehicle.getModel()); %></td>
+												<td><% out.println(vehicle.getColor()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Reg. Date</th>
+												<th scope="col">Price</th>
+												<th scope="col">Area</th>
+												<th scope="col">City</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getReg_date()); %></td>
+												<td><% out.println(vehicle.getPrice()); %></td>
+												<td><% out.println(vehicle.getArea()); %></td>
+												<td><% out.println(vehicle.getCity()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">State</th>
+												<th scope="col">Zip</th>
+												<th scope="col">Owner_id</th>
+												<th scope="col">Fuel_type</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getState()); %></td>
+												<td><% out.println(vehicle.getZip()); %></td>
+												<td><% out.println(vehicle.getOwner_id()); %></td>
+												<td><% out.println(vehicle.getFuel_type()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Gear</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getGear()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+							</table>
+							<div class="row">
+								<div class="col-md-12">
+									<form action="/Vehicle/deletevehicle" method="POST">
+										<input type="hidden" name="owner_id" value="<%= vehicle.getOwner_id() %>">
+										<button type="submit" class="btn btn-danger book-btn" name="v_id" value="<%= vehicle.getV_id() %>">Delete</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 				<% } %>
-			</tbody>
-		</table>	
-	<% } %>
+			<% } %>
+		</div>
+	    	
+	    </div>
+	    
+	  </div>
+	</div>
+
+    <div class="card">
+	  <div class="card-body">
+	    <h2>You can Register your vehicle for sale!</h2>
+		<h3>Please fill the details below to register your vehicle</h3>
+	  </div>
+	</div>
             
-    <h2>You can Register your vehicle for sale!</h2>
-	<h3>Please fill the details below to register your vehicle</h3>
+    
 
 	<form action="/Vehicle/sell" method="POST">
 		<label>Name: </label>
