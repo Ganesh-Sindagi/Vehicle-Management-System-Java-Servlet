@@ -107,6 +107,43 @@
 			margin-top: 20px;
 		}
 		
+			/* Footer Section */
+
+		#ganesh {
+		    font-family: 'Ubuntu', sans-serif;
+		    font-size: 20px;
+		    padding-bottom: 20px;
+		    margin-left: 3rem;
+		}
+		
+		.fth {
+		    margin-top: 70px;
+		}
+		
+		.footer {
+		    position: absolute;
+		    margin-top: 2rem;
+		}
+		
+		.footer-item {
+		    padding-top: 10px;
+		    margin-left: 550px;
+		}
+		
+		.social-icon {
+		    color: #000;
+		    margin-left: 50px;
+		    font-size: 30px;
+		    padding-bottom: 20px;
+		}
+		
+		#copyright {
+		    font-family: 'Ubuntu', sans-serif;
+		    font-size: 16px;
+		    margin-left: 80px;
+		}
+	
+		
     </style>
 	
     <!-- Navbar -->
@@ -332,6 +369,22 @@
 	</div>
     
 
+	<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-item">
+        <h1 id="ganesh">Developed by Ganesh Sindagi</h1>
+        <a href="https://www.facebook.com/ganesh.sindagi.3"><i class="social-icon fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/GaneshSindagi"><i class="social-icon fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/ganesh_sindagi/"><i class="social-icon fab fa-instagram"></i></a>
+        <a href = "mailto:ganeshsindagi7@gmail.com"><i class="social-icon fas fa-envelope"></i></a>
+        <p id="copyright">Copyright 2020 MotorHub</p>
+        </div>
+    </footer>
 
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://kit.fontawesome.com/b6a0edf9cb.js" crossorigin="anonymous"></script>
+    
+    <!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

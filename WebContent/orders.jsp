@@ -64,6 +64,77 @@
 			color: #F8F3D4 !important;
 		}
        
+       .vehicle-vehicled {
+			width: 65.5rem;
+			margin-top: 2rem;
+			border-radius: 10px;
+			box-shadow: 5px 5px 5px rgb(60, 81, 85);
+			margin-left: 15rem;
+			margin-bottom: 2rem;
+		}
+		
+		.veh-img {
+			width: 500px;
+			height: 300px;
+			border-radius: 26px;
+			margin-left: 10rem;
+		}
+		
+		.vehicled-head {
+			margin-top: 20px;
+			margin-left: 15rem;
+		}
+		
+		.book-btn {
+			margin-left: 30rem;
+			margin-bottom: 1rem;
+		}
+		
+		.table {
+			margin-top: 20px;
+		}
+		
+			/* Footer Section */
+
+		#ganesh {
+		    font-family: 'Ubuntu', sans-serif;
+		    font-size: 20px;
+		    padding-bottom: 20px;
+		    margin-left: 3rem;
+		}
+		
+		.fth {
+		    margin-top: 70px;
+		}
+		
+		.footer {
+		    position: absolute;
+		    margin-top: 2rem;
+		}
+		
+		.footer-item {
+		    padding-top: 10px;
+		    margin-left: 550px;
+		}
+		
+		.social-icon {
+		    color: #000;
+		    margin-left: 50px;
+		    font-size: 30px;
+		    padding-bottom: 20px;
+		}
+		
+		#copyright {
+		    font-family: 'Ubuntu', sans-serif;
+		    font-size: 16px;
+		    margin-left: 80px;
+		}
+		
+		.nav-name {
+			color: #F8F3D4 !important;
+		}
+		
+       
     </style>
 	
     <!-- Navbar -->
@@ -98,71 +169,156 @@
             </div>
         </div>
      </nav>
-
-    <h1>Welcome <%=name%></h1>
 	
-	<% ArrayList<Booking> bookingList = (ArrayList)request.getAttribute("bookingList"); %>
-	<% ArrayList<Vehicle> vehicleList = (ArrayList)request.getAttribute("vehicleList"); %>
+	<div class="vehicled">
+	  <div class="vehicled-body">
+	    
+	    <div class="row">
+	    	
+	    	<div class="col-md-9">
+			<% ArrayList<Booking> bookingList = (ArrayList)request.getAttribute("bookingList"); %>
+			<% ArrayList<Vehicle> vehicleList = (ArrayList)request.getAttribute("vehicleList"); %>
     
-    <h2>Your Orders <%=bookingList.size()%></h2>
+    		<h2 class="vehicled-head">Your Orders <%=bookingList.size()%></h2>
+			
+   			<% if(!bookingList.isEmpty()) { %>
+				<% for(int i=0; i<bookingList.size(); i++){ %>
+					<% Booking booking = (Booking)bookingList.get(i); %>
+					<% Vehicle vehicle = (Vehicle)vehicleList.get(i); %>
+					<div class="vehicled vehicle-vehicled">
+						<div class="vehicled-body">
+							<div class="row">
+								<div class="col-md-12">
+									<img class="veh-img" src="<% out.println(vehicle.getImage()); %>">
+								</div>
+								
+							</div>
+							
+							<table class="table table-hover table-borderless">
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Booking_id</th>
+												<th scope="col">Date</th>
+												<th scope="col">User_id</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(booking.getBooking_id()); %></td>
+												<td><% out.println(booking.getDate()); %></td>
+												<td><% out.println(booking.getUser_id()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+								
+								
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Vehicle_id</th>
+												<th scope="col">Type</th>
+												<th scope="col">Model</th>
+												<th scope="col">Color</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getV_id()); %></td>
+												<td><% out.println(vehicle.getType()); %></td>
+												<td><% out.println(vehicle.getModel()); %></td>
+												<td><% out.println(vehicle.getColor()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Reg. Date</th>
+												<th scope="col">Price</th>
+												<th scope="col">Area</th>
+												<th scope="col">City</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getReg_date()); %></td>
+												<td><% out.println(vehicle.getPrice()); %></td>
+												<td><% out.println(vehicle.getArea()); %></td>
+												<td><% out.println(vehicle.getCity()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">State</th>
+												<th scope="col">Zip</th>
+												<th scope="col">Owner_id</th>
+												<th scope="col">Fuel_type</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getState()); %></td>
+												<td><% out.println(vehicle.getZip()); %></td>
+												<td><% out.println(vehicle.getOwner_id()); %></td>
+												<td><% out.println(vehicle.getFuel_type()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<thead>
+											<tr>
+												<th scope="col">Gear</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><% out.println(vehicle.getGear()); %></td>
+											</tr>
+										</tbody>		
+									</div>
+								</div>
+							</table>
+							<div class="row">
+								<div class="col-md-12">
+									<form action="/Vehicle/orders" method="POST">
+										<input type="hidden" name="vehicle_id" value="<%= booking.getVehicle_id() %>">
+										<button type="submit" class="btn btn-dark book-btn" name="booking_id" value="<%= booking.getBooking_id() %>">Cancel</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% } %>
+			<% } %>
+		</div>
+	    	
+	    </div>
+	    
+	  </div>
+	</div>
+	
+
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://kit.fontawesome.com/b6a0edf9cb.js" crossorigin="anonymous"></script>
     
-    <% if(!bookingList.isEmpty()) { %>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">Booking_id</th>
-					<th scope="col">Date</th>
-					<th scope="col">User_id</th>
-					<th scope="col">Vehicle_id</th>
-					<th scope="col">Owner_id</th>
-					<th scope="col">Type</th>
-					<th scope="col">Model</th>
-					<th scope="col">Color</th>
-					<th scope="col">Reg. Date</th>
-					<th scope="col">Image</th>
-					<th scope="col">Price</th>
-					<th scope="col">Area</th>
-					<th scope="col">City</th>
-					<th scope="col">State</th>
-					<th scope="col">Zip</th>
-					<th scope="col">Fuel_type</th>
-					<th scope="col">Gear</th>
-					<th scope="col">Cancel Order</th>
-				</tr>
-			</thead>
-		
-			<tbody>
-       			<% for(int i=0; i<bookingList.size(); i++){ %>
-       	    		<% Booking booking = (Booking)bookingList.get(i); %>
-       	    		<% Vehicle vehicle = (Vehicle)vehicleList.get(i); %>
-       	    		<tr>
-						<td><% out.println(booking.getBooking_id()); %></td>
-						<td><% out.println(booking.getDate()); %></td>
-						<td><% out.println(booking.getUser_id()); %></td>
-						<td><% out.println(vehicle.getV_id()); %></td>
-						<td><% out.println(vehicle.getOwner_id()); %></td>
-						<td><% out.println(vehicle.getType()); %></td>
-						<td><% out.println(vehicle.getModel()); %></td>
-						<td><% out.println(vehicle.getColor()); %></td>
-						<td><% out.println(vehicle.getReg_date()); %></td>
-						<td><img src="<% out.println(vehicle.getImage()); %>"></td>
-						<td><% out.println(vehicle.getPrice()); %></td>
-						<td><% out.println(vehicle.getArea()); %></td>
-						<td><% out.println(vehicle.getCity()); %></td>
-						<td><% out.println(vehicle.getState()); %></td>
-						<td><% out.println(vehicle.getZip()); %></td>
-						<td><% out.println(vehicle.getFuel_type()); %></td>
-						<td><% out.println(vehicle.getGear()); %></td>
-						<td>
-							<form action="/Vehicle/orders" method="POST">
-								<input type="hidden" name="vehicle_id" value="<%= booking.getVehicle_id() %>">
-								<button type="submit" class="btn btn-dark" name="booking_id" value="<%= booking.getBooking_id() %>">Cancel</button>
-							</form>
-						</td>
-					</tr>
-       	    	<% } %>
-       	    	</tbody>
-       	    </table>
-       <% } %>
+    <!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
