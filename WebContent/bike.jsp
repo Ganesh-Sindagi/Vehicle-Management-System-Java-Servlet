@@ -184,15 +184,15 @@
 		    <div class="col-md-3">
 		      <div class="filters-div">
 				<h3 style="margin-top: 2rem;">Filters</h3>
+				<p>Filter By Price</p>
 				<form action="/Vehicle/filterpricebike" method="POST">
-					<p>Rs 10K</p>
 					<label for="customRange2" class="form-label">Select Price Range</label>
 					<input name="price_range" type="range" class="form-range" min="10000" max="1000000" step="5000" value="200000" id="customRange2" onChange="this.form.submit()">
-					<p>Rs 10Lakh</p>
+					<p>Rs 10K <span style="margin-left: 9rem;">Rs 10Lakh</span></p>
 				</form>
 				
 				<form action="/Vehicle/filterareabike" method="POST">
-					<p>Filter By Area</p>
+					<p style="margin-top: 30px;">Filter By Area</p>
 					<% ArrayList<Area> areaList = (ArrayList)request.getAttribute("areaList"); %>
 					<% if(!areaList.isEmpty()){ %>
 						<% for(int i=0; i<areaList.size(); i++){ %>
@@ -208,7 +208,7 @@
 				</form>
 				
 				<form action="/Vehicle/filtercitybike" method="POST">
-					<p>Filter By City</p>
+					<p style="margin-top: 30px;">Filter By City</p>
 					<% ArrayList<City> cityList = (ArrayList)request.getAttribute("cityList"); %>
 					<% if(!cityList.isEmpty()){ %>
 						<% for(int i=0; i<cityList.size(); i++){ %>
@@ -224,7 +224,7 @@
 				</form>
 				
 				<form action="/Vehicle/filterstatebike" method="POST">
-					<p>Filter By State</p>
+					<p style="margin-top: 30px;">Filter By State</p>
 					<% ArrayList<State> stateList = (ArrayList)request.getAttribute("stateList"); %>
 					<% if(!stateList.isEmpty()){ %>
 						<% for(int i=0; i<stateList.size(); i++){ %>
@@ -240,7 +240,7 @@
 				</form>
 				
 				<form action="/Vehicle/filterzipbike" method="POST">
-					<p>Filter By Zip</p>
+					<p style="margin-top: 30px;">Filter By Zip</p>
 					<% ArrayList<Zip> zipList = (ArrayList)request.getAttribute("zipList"); %>
 					<% if(!zipList.isEmpty()){ %>
 						<% for(int i=0; i<zipList.size(); i++){ %>
