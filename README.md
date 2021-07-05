@@ -13,7 +13,7 @@ Click on the image to watch the full video.
 1. Download Eclipse EE IDE.
 2. Download Apache Tomcat Server.
 3. Clone the repo in the working directory.
-5. Make Schema and tables in phpMyAdmin or some other mySQL tools.
+5. Import the ```vehicle.sql``` file in phpmyadmin or some other mySQL tool
 4. Run the server.
 5. Type ```http://localhost:8080/Vehicle/``` in the browser.
 
